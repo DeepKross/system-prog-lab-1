@@ -44,7 +44,11 @@ int main() {
     while ((c = fgetc(file)) != EOF) {
         if (isDelimiter(c)) {
             if (wordBufferIndex > 0) {
-                wordBuffer[wordBufferIndex] = '\0';
+                if (wordBufferIndex > 31) {
+                    wordBuffer[31] = '\0';
+                } else {
+                    wordBuffer[wordBufferIndex] = '\0';
+                }
 
                 int isDuplicate = 0;
                 for (int i = 0; i < wordCount; i++) {
